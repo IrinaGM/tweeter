@@ -1,0 +1,28 @@
+/**
+** css for the nav bar
+*/
+
+nav {
+  height: 120px;
+  width: 100vw;
+  background-color: #4056a1;
+  color: #ffffff;
+  padding: 1.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Bungee", cursive;
+}
+
+.navbar.text {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+i {
+  color: #d11d11;
+}
