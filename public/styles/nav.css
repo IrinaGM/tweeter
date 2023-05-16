@@ -21,6 +21,6 @@ nav {
   flex-direction: column;
 }
 
-i {
+i.fa-angles-down {
   color: #d11d11;
 }

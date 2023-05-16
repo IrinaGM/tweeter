@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweets-container.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -52,11 +53,10 @@
       </div>
     </nav>
 
-    <header>
+    <header class="main-header">
       <div>
         <img src="/images/profile-hex.png" />
       </div>
-      <br />
       <div>
         <h2>Your Name</h2>
       </div>
@@ -76,6 +76,26 @@
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
+      </section>
+      <section class="tweets-container">
+        <article>
+          <header class="tweet">
+            <div class="tweet-user">
+              <img class="user-icon" src="/images/woman.png" />
+              <span>Beyonce</span>
+            </div>
+            <span class="user-handle">@QueenB</span>
+          </header>
+          <p class="tweet-body">I am the dragon breathing fire. Beautiful mane, I'm the lion.</p>
+          <footer class="tweet">
+            <span>10 days ago</span>
+            <div class="tweet-icons">
+              <i class="fa-solid fa-flag"></i>
+              <i class="fa-solid fa-retweet"></i>
+              <i class="fa-sharp fa-solid fa-heart"></i>
+            </div>
+          </footer>
+        </article>
       </section>
     </main>
   </body>
