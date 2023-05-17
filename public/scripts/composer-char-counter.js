@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  $("textarea").on("input", function () {
-    //find the length of the textarea
-    let countCharsInput = $(`#${this.id}`).val().length;
+  $("#tweet-text").on("input", function () {
+    //find the length of the text in the textarea
+    let countCharsInput = $(this).val().length;
     const maxChars = 140;
     //find the element with class counter
     const counterElm = $(this).parents().find(".counter");
