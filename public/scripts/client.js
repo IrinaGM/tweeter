@@ -62,9 +62,19 @@ $(document).ready(function () {
   $("#new-tweet-submit").on("submit", function (event) {
     //prevent default behavior of the submit event in a form
     event.preventDefault();
-    // serialize the data and send it to the server
-    $.post("/tweets", $(this).serialize()).done(function (data) {
-      console.log("Success: ", data);
-    });
+
+    //validate "new-tweet-submit" from input
+    const tweetText = $("#tweet-text").val();
+
+    if (tweetText === "" || tweetText === null) {
+      alert("Tweet cannot be blank");
+    } else if (tweetText.length > 140) {
+      alert("Tweet is too long");
+    } else {
+      // serialize the data and send it to the server
+      $.post("/tweets", $(this).serialize()).done(function (data) {
+        console.log("Success");
+      });
+    }
   });
 });
