@@ -41,7 +41,7 @@ function createTweetElement(tweet) {
 function renderTweets(tweets) {
   for (const tweet of tweets) {
     let $tweet = createTweetElement(tweet);
-    $(".tweets-container").append($tweet);
+    $(".tweets-container").prepend($tweet);
   }
 }
 
@@ -63,7 +63,7 @@ $(document).ready(function () {
     //prevent default behavior of the submit event in a form
     event.preventDefault();
 
-    //validate "new-tweet-submit" from input
+    //validate "new-tweet-submit" form input
     const tweetText = $("#tweet-text").val();
 
     if (tweetText === "" || tweetText === null) {
@@ -74,6 +74,8 @@ $(document).ready(function () {
       // serialize the data and send it to the server
       $.post("/tweets", $(this).serialize()).done(function (data) {
         console.log("Success");
+        $("#tweets-container").empty();
+        loadTweets();
       });
     }
   });
