@@ -45,6 +45,18 @@ function renderTweets(tweets) {
   }
 }
 
+/**
+ * @function escape - function to escape text in order prevent cross-site scripting
+ * @param {string} str - the input to escape
+ * @return {string} - returns the text after it has been escaped
+ */
+
+function escape (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 $(document).ready(function () {
   // Function to fetch the tweets from "/tweets" endpoint and to display them on the page
   function loadTweets() {
@@ -64,7 +76,7 @@ $(document).ready(function () {
     event.preventDefault();
 
     //validate "new-tweet-submit" form input
-    const tweetText = $("#tweet-text").val();
+    const tweetText = escape($("#tweet-text").val());
 
     if (tweetText === "" || tweetText === null) {
       alert("Tweet cannot be blank");
@@ -72,8 +84,7 @@ $(document).ready(function () {
       alert("Tweet is too long");
     } else {
       // serialize the data and send it to the server
-      $.post("/tweets", $(this).serialize()).done(function (data) {
-        console.log("Success");
+      $.post("/tweets", { text: tweetText }).done(function (data) {
         $("#tweets-container").empty();
         loadTweets();
       });
