@@ -72,6 +72,8 @@
     <main class="container">
       <section class="new-tweet">
         <form id="new-tweet-submit" action="/tweets/" method="POST">
+          <div id="error-container" class="error hidden">
+          </div>
           <textarea
             name="text"
             id="tweet-text"

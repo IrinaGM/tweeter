@@ -33,6 +33,22 @@ function createTweetElement(tweet) {
   return $(tweetMarkup);
 }
 
+
+/**
+ * @function createErrorMsgElement - Takes in an error message and returns a all the children elements containing the HTML structure of an error message.
+ * @param {string} errorMsg
+ * @returns {html}
+ */
+
+function createErrorMsgElement(errorMsg){
+  const errorMsgMarkup = `
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <p>${errorMsg}</p>
+    <i class="fa-solid fa-triangle-exclamation"></i>
+  `
+  return $(errorMsgMarkup);
+}
+
 /**
  * @function renderTweets - taking in an array of tweet objects and then appending each one to the .tweets-container
  * @param {array} tweets
@@ -51,7 +67,7 @@ function renderTweets(tweets) {
  * @return {string} - returns the text after it has been escaped
  */
 
-function escape (str) {
+function escape(str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
@@ -79,13 +95,20 @@ $(document).ready(function () {
     const tweetText = escape($("#tweet-text").val());
 
     if (tweetText === "" || tweetText === null) {
-      alert("Tweet cannot be blank");
+      $("#error-container").removeClass("hidden");
+      $("#error-container").append(createErrorMsgElement("Tweet cannot be blank"));
+      //$("#error-container").text("Tweet cannot be blank");
     } else if (tweetText.length > 140) {
-      alert("Tweet is too long");
+      $("#error-container").removeClass("hidden");
+      $("#error-container").append(createErrorMsgElement("Tweet is too long"));
     } else {
+      if (!$("#error-container").hasClass("hidden")) {
+        $("#error-container").addClass("hidden");
+      }
       // serialize the data and send it to the server
       $.post("/tweets", { text: tweetText }).done(function (data) {
         $("#tweets-container").empty();
+        $("#tweet-text").val('');
         loadTweets();
       });
     }
