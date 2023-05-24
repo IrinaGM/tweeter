@@ -33,19 +33,18 @@ function createTweetElement(tweet) {
   return $(tweetMarkup);
 }
 
-
 /**
  * @function createErrorMsgElement - Takes in an error message and returns a all the children elements containing the HTML structure of an error message.
  * @param {string} errorMsg
  * @returns {html}
  */
 
-function createErrorMsgElement(errorMsg){
+function createErrorMsgElement(errorMsg) {
   const errorMsgMarkup = `
     <i class="fa-solid fa-triangle-exclamation"></i>
     <p>${errorMsg}</p>
     <i class="fa-solid fa-triangle-exclamation"></i>
-  `
+  `;
   return $(errorMsgMarkup);
 }
 
@@ -96,19 +95,25 @@ $(document).ready(function () {
 
     if (tweetText === "" || tweetText === null) {
       // show the error message in the appropriate element
-      $("#error-container").removeClass("hidden");
-      $("#error-container").append(createErrorMsgElement("Tweet cannot be blank"));
+      if ($("#error-container").hasClass("hidden")) {
+        $("#error-container").removeClass("hidden");
+        $("#error-container").append(createErrorMsgElement("Tweet cannot be blank"));
+      }
     } else if (tweetText.length > 140) {
-      $("#error-container").removeClass("hidden");
-      $("#error-container").append(createErrorMsgElement("Tweet is too long"));
+      // show the error message in the appropriate element
+      if ($("#error-container").hasClass("hidden")) {
+        $("#error-container").removeClass("hidden");
+        $("#error-container").append(createErrorMsgElement("Tweet is too long"));
+      }
     } else {
+      //check if the error-container is not hidden, and hide it if it's not.
       if (!$("#error-container").hasClass("hidden")) {
         $("#error-container").addClass("hidden");
       }
       // serialize the data and send it to the server
       $.post("/tweets", { text: tweetText }).done(function (data) {
         $("#tweets-container").empty();
-        $("#tweet-text").val('');
+        $("#tweet-text").val("");
         loadTweets();
       });
     }
