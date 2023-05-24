@@ -95,9 +95,9 @@ $(document).ready(function () {
     const tweetText = escape($("#tweet-text").val());
 
     if (tweetText === "" || tweetText === null) {
+      // show the error message in the appropriate element
       $("#error-container").removeClass("hidden");
       $("#error-container").append(createErrorMsgElement("Tweet cannot be blank"));
-      //$("#error-container").text("Tweet cannot be blank");
     } else if (tweetText.length > 140) {
       $("#error-container").removeClass("hidden");
       $("#error-container").append(createErrorMsgElement("Tweet is too long"));
