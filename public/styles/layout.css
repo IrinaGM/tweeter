@@ -37,3 +37,46 @@ main {
   width: 90%;
   background-color: #f4f1ec;
 }
+
+h2 {
+  color: white;
+}
+
+@media only screen and (min-width: 1024px) {
+  body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+      "nav nav nav"
+      "header main main"
+      "header main main";
+  }
+
+  nav {
+    grid-area: nav;
+  }
+
+  header.main-header {
+    grid-area: header;
+    align-self: start;
+    margin: 5vh 10vh;
+    width: auto;
+  }
+
+  main {
+    grid-area: main;
+    margin-top: 1vh;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  nav {
+    background-color: #ffd400;
+    background-image: url("../images/cloth-alike.png");
+    padding: 1.5em;
+  }
+  header.main-header {
+    justify-content: initial;
+  }
+}
