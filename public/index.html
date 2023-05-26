@@ -59,6 +59,7 @@
       </div>
     </nav>
 
+    <!-- Header -->
     <header class="main-header">
       <div>
         <img src="/images/profile-hex.png" />
@@ -72,6 +73,7 @@
     <main class="container">
       <section class="new-tweet">
         <div id="error-container" class="error hidden"></div>
+        <!-- Form for new tweet submission -->
         <form id="new-tweet-submit" action="/tweets/" method="POST">
           <textarea
             name="text"
@@ -84,6 +86,7 @@
           </div>
         </form>
       </section>
+      <!-- Container for all tweets from DB -->
       <section id="tweets-container" class="tweets-container"></section>
     </main>
   </body>
