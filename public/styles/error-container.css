@@ -1,0 +1,27 @@
+#error-container {
+  margin-top: 1em;
+  width: 100%;
+  border: 5px solid rgba(255, 0, 0, 0.641);
+  border-radius: 15px;
+  padding: 0 5vh;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: rgba(255, 0, 0, 0.641);
+  font-weight: 600;
+
+  transition: all 0.5s ease-in-out;
+}
+
+#error-container.hidden {
+  display: none;
+}
+
+.fa-triangle-exclamation {
+  align-self: center;
+  padding: 0 2vh;
+  font-size: 1.8em;
+  color: rgba(255, 0, 0, 0.641);
+}
