@@ -42,7 +42,7 @@ function createTweetElement(tweet) {
 function createErrorMsgElement(errorMsg) {
   const errorMsgMarkup = `
     <i class="fa-solid fa-triangle-exclamation"></i>
-    <p>${errorMsg}</p>
+    <p class="error-msg">${errorMsg}</p>
     <i class="fa-solid fa-triangle-exclamation"></i>
   `;
   return $(errorMsgMarkup);
@@ -61,6 +61,25 @@ function renderTweets(tweets) {
 }
 
 /**
+ * @function renderError - taking in a target element and an error message and appending the error to the target element if conditions are met
+ * @param {string} element - target element to which to add the error
+ * @param {string} errorMsg - error message
+ */
+
+function renderError(element, errorMsg) {
+  //check if element is hidden
+  if ($(`${element}`).hasClass("hidden")) {
+    // remove "hidden" class
+    $(`${element}`).removeClass("hidden");
+    // create the error message elements and add it as children to the element
+    $(`${element}`).append(createErrorMsgElement(errorMsg));
+  } else {
+    //element is not hidden, therefore update error (in case a different error needs to be presented)
+    $(`${element}`).find(".error-msg").text(`${errorMsg}`);
+  }
+}
+
+/**
  * @function escape - function to escape text in order prevent cross-site scripting
  * @param {string} str - the input to escape
  * @return {string} - returns the text after it has been escaped
@@ -73,7 +92,7 @@ function escape(str) {
 }
 
 $(document).ready(function () {
-  // Function to fetch the tweets from "/tweets" endpoint and to display them on the page
+  // Function to fetch the tweets from "/tweets" endpoint and to display them on the page when page is loaded for the first time
   function loadTweets() {
     $.get("/tweets").done(function (data) {
       renderTweets(data);
@@ -95,25 +114,25 @@ $(document).ready(function () {
 
     if (tweetText === "" || tweetText === null) {
       // show the error message in the appropriate element
-      if ($("#error-container").hasClass("hidden")) {
-        $("#error-container").removeClass("hidden");
-        $("#error-container").append(createErrorMsgElement("Tweet cannot be blank"));
-      }
+      renderError("#error-container", "Tweet cannot be blank");
     } else if (tweetText.length > 140) {
       // show the error message in the appropriate element
-      if ($("#error-container").hasClass("hidden")) {
-        $("#error-container").removeClass("hidden");
-        $("#error-container").append(createErrorMsgElement("Tweet is too long"));
-      }
+      renderError("#error-container", "Tweet is too long");
     } else {
-      //check if the error-container is not hidden, and hide it if it's not.
+      // if all validation passed submit form
+      //check if the error-container visible, and hide it if it is.
       if (!$("#error-container").hasClass("hidden")) {
         $("#error-container").addClass("hidden");
+        //clear our all chilldren of error-container
+        $("#error-container").empty();
       }
-      // serialize the data and send it to the server
+      // send tweet text to the server
       $.post("/tweets", { text: tweetText }).done(function (data) {
-        $("#tweets-container").empty();
+        //clear tweet-text field
         $("#tweet-text").val("");
+        //clear tweets-container from child elements
+        $("#tweets-container").empty();
+        //load all the tweets from db
         loadTweets();
       });
     }
