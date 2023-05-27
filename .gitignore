@@ -1,5 +1,3 @@
 node_modules/
-docs/*
-*.mp4
 .env
 .DS_Store
