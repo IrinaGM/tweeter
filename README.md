@@ -4,14 +4,14 @@ Tweeter is a simple, single-page Twitter clone.
 
 ## Description
 
-This project was developed as part of Lighthouse Labs Web Development course and showscase practice with: 
+This project was developed as part of Lighthouse Labs Web Development course and showscase practice with:
+
 - HTML, CSS, JS, jQuery and AJAX front-end skills.
 - Node and Express back-end skills.
 
 ## Final Product
 
-![TEXT]()
-![TEXT]()
+![Demo](docs/IrinaGM-tweeter.mp4)
 
 ## Dependencies
 
@@ -59,7 +59,6 @@ npm run local
 ```
 
 3. Navigate to [http://localhost:8080/](http://localhost:8080/) in your browser.
-
 
 ## License
 
