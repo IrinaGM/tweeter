@@ -11,7 +11,7 @@ This project was developed as part of Lighthouse Labs Web Development course and
 
 ## Final Product
 
-![Demo](docs/IrinaGM-tweeter.mp4)
+![Demo](docs/tweeter-demo.gif)
 
 ## Dependencies
 
